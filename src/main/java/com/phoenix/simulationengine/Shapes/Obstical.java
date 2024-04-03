@@ -17,8 +17,8 @@ import javax.swing.JComponent;
 public class Obstical extends JComponent {
 
     public Vector pos = new Vector(0, 0);
-    public int width = 300;
-    public int height = 50;
+    public int width = 250;
+    public int height = 20;
 
     public int leftMargin;
     public int rightMargin;

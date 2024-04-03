@@ -15,8 +15,8 @@ import javax.swing.JComponent;
 public class Goal extends JComponent{
 
     public Vector pos = new Vector(0, 0);
-    public int width = 50;
-    public int height = 50;
+    public int width = 20;
+    public int height = 20;
 
     public int leftMargin;
     public int rightMargin;

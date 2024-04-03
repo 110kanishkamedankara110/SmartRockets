@@ -1,9 +1,11 @@
 com\phoenix\simulationengine\util\Sketch.class
 com\phoenix\simulationengine\Shapes\Vehical.class
 com\phoenix\simulationengine\Shapes\Goal.class
+com\phoenix\simulationengine\util\Main$1$1.class
 com\phoenix\simulationengine\Sketch\Steering.class
 com\phoenix\simulationengine\util\Dna.class
 com\phoenix\simulationengine\util\Main.class
 com\phoenix\simulationengine\util\Main$1.class
 com\phoenix\simulationengine\Shapes\Obstical.class
 com\phoenix\simulationengine\util\Vector.class
+com\phoenix\simulationengine\util\Main$2.class

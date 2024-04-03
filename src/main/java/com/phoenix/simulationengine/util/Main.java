@@ -22,40 +22,40 @@ public class Main extends javax.swing.JFrame {
             Sketch ms = new com.phoenix.simulationengine.Sketch.Steering();
 
             ms.setup(this.jPanel1);
-            new Thread(() -> {
-                long lastTime = System.nanoTime();
-                double targetFPS = 60.0;
-                double nsPerFrame = 1_000_000_000.0 / targetFPS;
-                int frames = 0;
-                long timer = System.currentTimeMillis();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    final long lastTime[] ={System.nanoTime()};
+                    double targetFPS = 60.0;
+                    double nsPerFrame = 1_000_000_000.0 / targetFPS;
 
-                while (true) {
-                    long now = System.nanoTime();
-                    double delta = (now - lastTime) / nsPerFrame;
-                    lastTime = now;
-                    jPanel1.revalidate();
-                    ms.update(jPanel1);
-                    frames++;
+                    long timer = System.currentTimeMillis();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while (true) {
+                                long now = System.nanoTime();
+                                double delta = (now - lastTime[0]) / nsPerFrame;
+                                lastTime[0] = now;
+                                jPanel1.revalidate();
+                                ms.update(jPanel1);
+                              
 
-                    // FPS counter
-                    if (System.currentTimeMillis() - timer > 1000) {
-//                        System.out.println("FPS: " + frames);
-                        frames = 0;
-                        timer += 1000;
-                    }
+                             
+                                // Delay to achieve target FPS
+                                long sleepTime = (long) (nsPerFrame - (System.nanoTime() - now));
+                                if (sleepTime > 0) {
+                                    try {
+                                        Thread.sleep(sleepTime / 1_000_000); // Convert nanoseconds to milliseconds
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
 
-                    // Delay to achieve target FPS
-                    long sleepTime = (long) (nsPerFrame - (System.nanoTime() - now));
-                    if (sleepTime > 0) {
-                        try {
-                            Thread.sleep(sleepTime / 1_000_000); // Convert nanoseconds to milliseconds
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            }
                         }
-                    }
-
+                    }).start();
                 }
-
             }).start();
 
         } catch (Exception ex) {
