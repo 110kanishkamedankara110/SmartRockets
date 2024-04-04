@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    final long lastTime[] ={System.nanoTime()};
+                    final long lastTime[] = {System.nanoTime()};
                     double targetFPS = 60.0;
                     double nsPerFrame = 1_000_000_000.0 / targetFPS;
 
@@ -38,10 +38,9 @@ public class Main extends javax.swing.JFrame {
                                 double delta = (now - lastTime[0]) / nsPerFrame;
                                 lastTime[0] = now;
                                 jPanel1.revalidate();
-                                ms.update(jPanel1);
-                              
 
-                             
+                                ms.update(jPanel1);
+
                                 // Delay to achieve target FPS
                                 long sleepTime = (long) (nsPerFrame - (System.nanoTime() - now));
                                 if (sleepTime > 0) {
