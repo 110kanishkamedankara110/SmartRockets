@@ -13,7 +13,7 @@ import java.util.Random;
 public class Dna {
 
     private final Vector genes[] = new Vector[500];
-    float muattionRate = 0.005f;
+    float muattionRate = 0.05f;
     Random random = new Random();
 
     public Dna() {
@@ -38,6 +38,8 @@ public class Dna {
         int midpoint = Math.abs(this.genes.length / 2);
         for (int i = 0; i < this.genes.length; i++) {
             child.genes[i] = (i > midpoint) ? this.genes[i] : partner.genes[i];
+            child.genes[i].setMag(0.1);
+
         }
         return child;
     }
@@ -46,6 +48,7 @@ public class Dna {
         for (int i = 0; i < genes.length; i++) {
             if (Math.random() < muattionRate) {
                 genes[i] = new Vector(-1 + (1 - (-1)) * random.nextDouble(), -1 + (1 - (-1)) * random.nextDouble());
+                genes[i].setMag(0.1);
             }
         }
     }

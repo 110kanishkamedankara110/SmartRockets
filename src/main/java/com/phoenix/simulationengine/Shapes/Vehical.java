@@ -33,21 +33,13 @@ public class Vehical extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (!dead) {
-//            if (pos.x > f.getWidth()) {
-//                pos.x = f.getWidth() - 10;
-//                hit = true;
-//                points /= 2;
-//            }
+
             if (pos.y > f.getHeight()) {
                 pos.y = f.getHeight();
                 hit = true;
                 points = 0;
             }
-//            if (pos.x < 0) {
-//                pos.x = 0;
-//                hit = true;
-//                points /= 2;
-//            }
+
             if (pos.y < 0) {
                 pos.y = 0;
                 hit = true;
@@ -60,7 +52,7 @@ public class Vehical extends JComponent {
 
             if (pos.x > Steering.getG().leftMargin && pos.x < Steering.getG().rightMargin && pos.y < Steering.getG().bottomMargin && pos.y > Steering.getG().topMargin) {
                 hit = true;
-                points *= 10 / (count + 1);
+                points *= 50;
             }
 
             Graphics2D g2d = (Graphics2D) g;
@@ -84,7 +76,6 @@ public class Vehical extends JComponent {
     public void update() {
         if (!hit) {
             applyForce(dna.getGenes()[count]);
-            acc.limit(0.3);
             vel.add(acc);
             pos.add(vel);
             acc.mult(0);
